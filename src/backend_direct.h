@@ -1,4 +1,8 @@
 #include "mruby/data.h"
+#include "backend.h"
 
-const static struct mrb_data_type mrb_backend_type = { "Backend", mrb_free };
+extern backend_t *backend_direct_new(void);
+
 void backend_direct_init(mrb_state *mrb, struct RClass *b);
+
+

@@ -1,5 +1,5 @@
 #include "mruby.h"
-#include "backend.h"
+#include "backend_direct.h"
 
 static mrb_value backend_direct_initialize(mrb_state *mrb, mrb_value self) {
     backend_t *b = backend_direct_new();
