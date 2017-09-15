@@ -5,6 +5,7 @@ f = s.file("/etc/passwd")
 assert("file") do
   assert_equal(f.mode(), 0o644)
   assert_true(f.exist())
+  assert_true(f.is_file())
 end
 
 
