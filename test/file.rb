@@ -7,6 +7,7 @@ assert("file") do
   assert_true(f.exist())
   assert_true(f.is_file())
   assert_false(f.is_directory())
+  assert_false(f.is_block_device())
 end
 
 

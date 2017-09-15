@@ -18,3 +18,6 @@ static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self);
 extern uint32_t resource_file_is_directory(resource_file_t *f);
 static mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self);
 
+extern uint32_t resource_file_is_block_device(resource_file_t *f);
+static mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self);
+
