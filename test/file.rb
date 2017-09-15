@@ -9,6 +9,7 @@ assert("file") do
   assert_false(f.is_directory())
   assert_false(f.is_block_device())
   assert_false(f.is_character_device())
+  assert_false(f.is_pipe())
 end
 
 
