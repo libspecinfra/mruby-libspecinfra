@@ -8,6 +8,7 @@ assert("file") do
   assert_true(f.is_file())
   assert_false(f.is_directory())
   assert_false(f.is_block_device())
+  assert_false(f.is_character_device())
 end
 
 
