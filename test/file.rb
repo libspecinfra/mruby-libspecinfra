@@ -10,13 +10,5 @@ assert("file") do
   assert_false(f.is_block_device())
   assert_false(f.is_character_device())
   assert_false(f.is_pipe())
+  assert_false(f.is_socket())
 end
-
-
-
-
-
-
-
-
-
