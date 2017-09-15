@@ -29,3 +29,6 @@ static mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self);
 
 extern uint32_t resource_file_is_socket(resource_file_t *f);
 static mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self);
+
+extern uint32_t resource_file_is_symlink(resource_file_t *f);
+static mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self);
