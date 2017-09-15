@@ -35,3 +35,6 @@ static mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self);
 
 extern char *resource_file_contents(resource_file_t *f);
 static mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self);
+
+extern char *resource_file_owner(resource_file_t *f);
+static mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self);

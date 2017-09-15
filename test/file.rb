@@ -13,4 +13,5 @@ assert("file") do
   assert_false(f.is_socket())
   assert_false(f.is_symlink())
   assert_true(f.contents().include?("root"))
+  assert_equal(f.owner(), "root")
 end
