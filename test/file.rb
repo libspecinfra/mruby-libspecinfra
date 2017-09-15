@@ -12,4 +12,5 @@ assert("file") do
   assert_false(f.is_pipe())
   assert_false(f.is_socket())
   assert_false(f.is_symlink())
+  assert_true(f.contents().include?("root"))
 end
