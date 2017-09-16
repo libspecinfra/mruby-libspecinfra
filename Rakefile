@@ -1,5 +1,6 @@
 MRUBY_CONFIG=File.expand_path(ENV["MRUBY_CONFIG"] || ".travis-build_config.rb")
 MRUBY_VERSION=ENV["MRUBY_VERSION"] || "master"
+#LIBSPECINFRA_BRANCH="add-wrapper-functions-for-file-resource"
 
 file :mruby do
   cmd =  "git clone --depth=1 git://github.com/mruby/mruby.git"
@@ -16,8 +17,13 @@ task :rust do
 end
 
 file :specinfra do
-  cmd = "git clone --depth=1 git://github.com/libspecinfra/specinfra.git"
+  cmd = "git clone git://github.com/libspecinfra/specinfra.git"
   cmd << " && cd specinfra"
+
+  if defined?(LIBSPECINFRA_BRANCH)
+    cmd << " && git checkout origin/#{LIBSPECINFRA_BRANCH}"
+  end
+
   cmd << " && PATH=$PATH:~/.cargo/bin cargo build"
   cmd << " && sudo cp target/debug/libspecinfra.so /usr/lib"
   sh cmd
