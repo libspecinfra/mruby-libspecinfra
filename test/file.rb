@@ -14,4 +14,5 @@ assert("file") do
   assert_false(f.is_symlink())
   assert_true(f.contents().include?("root"))
   assert_equal(f.owner(), "root")
+  assert_true(f.group() == "root" || f.group() == "wheel")
 end
