@@ -20,4 +20,5 @@ assert("file") do
   assert_true(f.is_readable_by_group())
   assert_true(f.is_readable_by_others())
   assert_true(f.is_readable_by_user("root"))
+  assert_true(f.is_writable())
 end
