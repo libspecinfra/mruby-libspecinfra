@@ -125,6 +125,13 @@ static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value se
     return mrb_bool_value(m);
 }
 
+static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
+    mrb_value str;
+    char *c = resource_file_md5sum(DATA_PTR(self));
+    str = mrb_str_buf_new(mrb, sizeof(c));
+    return mrb_str_cat2(mrb, str, c);
+}
+
 void resource_file_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "File", mrb->object_class);
     mrb_define_method(mrb, f, "mode", resource_file_mode_, MRB_ARGS_NONE());
@@ -149,4 +156,5 @@ void resource_file_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "is_writable_by_group", resource_file_is_writable_by_group_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "is_writable_by_others", resource_file_is_writable_by_others_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "is_writable_by_user", resource_file_is_writable_by_user_, MRB_ARGS_REQ(1));
+    mrb_define_method(mrb, f, "md5sum", resource_file_md5sum_, MRB_ARGS_NONE());
 }
