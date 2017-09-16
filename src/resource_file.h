@@ -80,3 +80,6 @@ static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self);
 
 extern int64_t *resource_file_size(resource_file_t *f);
 static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self);
+
+extern char *resource_file_linked_to(resource_file_t *f);
+static mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self);

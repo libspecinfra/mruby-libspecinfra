@@ -144,6 +144,13 @@ static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
     return mrb_fixnum_value(m);
 }
 
+static mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self) {
+    mrb_value str;
+    char *c = resource_file_linked_to(DATA_PTR(self));
+    str = mrb_str_buf_new(mrb, sizeof(c));
+    return mrb_str_cat2(mrb, str, c);
+}
+
 void resource_file_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "File", mrb->object_class);
     mrb_define_method(mrb, f, "mode", resource_file_mode_, MRB_ARGS_NONE());
@@ -171,4 +178,6 @@ void resource_file_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "md5sum", resource_file_md5sum_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "sha256sum", resource_file_sha256sum_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "size", resource_file_size_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "linked_to", resource_file_linked_to_, MRB_ARGS_NONE());
+
 }

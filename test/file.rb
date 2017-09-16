@@ -29,3 +29,15 @@ assert("file") do
   assert_equal(f.sha256sum().size(), 64)
   assert_true(f.size() > 0)
 end
+
+assert("file link") do
+  f = s.file("/etc")
+  if f.exist()
+    assert_equal(f.linked_to(), "private/etc")
+  end
+
+  f = s.file("/var/lock")
+  if f.exist()
+    assert_equal(f.linked_to(), "/run/lock")
+  end
+end
