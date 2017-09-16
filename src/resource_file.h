@@ -68,3 +68,6 @@ static mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value s
 
 extern uint32_t *resource_file_is_writable_by_others(resource_file_t *f);
 static mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value self);
+
+extern uint32_t *resource_file_is_writable_by_user(resource_file_t *f, const char *u);
+static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self);

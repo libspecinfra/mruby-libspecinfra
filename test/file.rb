@@ -24,4 +24,5 @@ assert("file") do
   assert_true(f.is_writable_by_owner())
   assert_false(f.is_writable_by_group())
   assert_false(f.is_writable_by_others())
+  assert_true(f.is_writable_by_user("root"))
 end
