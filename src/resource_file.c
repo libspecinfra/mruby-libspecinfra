@@ -139,6 +139,11 @@ static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
     return mrb_str_cat2(mrb, str, c);
 }
 
+static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
+    int64_t m = resource_file_size(DATA_PTR(self));
+    return mrb_fixnum_value(m);
+}
+
 void resource_file_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "File", mrb->object_class);
     mrb_define_method(mrb, f, "mode", resource_file_mode_, MRB_ARGS_NONE());
@@ -165,4 +170,5 @@ void resource_file_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "is_writable_by_user", resource_file_is_writable_by_user_, MRB_ARGS_REQ(1));
     mrb_define_method(mrb, f, "md5sum", resource_file_md5sum_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "sha256sum", resource_file_sha256sum_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "size", resource_file_size_, MRB_ARGS_NONE());
 }
