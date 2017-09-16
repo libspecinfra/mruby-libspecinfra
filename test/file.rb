@@ -26,4 +26,5 @@ assert("file") do
   assert_false(f.is_writable_by_others())
   assert_true(f.is_writable_by_user("root"))
   assert_equal(f.md5sum().size(), 32)
+  assert_equal(f.sha256sum().size(), 64)
 end

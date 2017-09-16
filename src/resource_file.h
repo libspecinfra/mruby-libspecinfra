@@ -74,3 +74,6 @@ static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value se
 
 extern char *resource_file_md5sum(resource_file_t *f);
 static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self);
+
+extern char *resource_file_sha256sum(resource_file_t *f);
+static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self);
