@@ -32,12 +32,12 @@ end
 
 assert("file link") do
   f = s.file("/etc")
-  if f.is_symlink()
+  if f.exist() && f.is_symlink()
     assert_equal(f.linked_to(), "private/etc")
   end
 
   f = s.file("/var/lock")
-  if f.is_symlink()
+  if f.exist() && f.is_symlink()
     assert_equal(f.linked_to(), "/run/lock")
   else
   end
