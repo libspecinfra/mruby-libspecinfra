@@ -15,4 +15,7 @@ assert("file") do
   assert_true(f.contents().include?("root"))
   assert_equal(f.owner(), "root")
   assert_true(f.group() == "root" || f.group() == "wheel")
+  assert_true(f.is_readable())
+  assert_true(f.is_readable_by_owner())
+  assert_true(f.is_readable_by_group())
 end

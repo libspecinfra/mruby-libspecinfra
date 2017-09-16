@@ -69,6 +69,21 @@ static mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
     return mrb_str_cat2(mrb, str, c);
 }
 
+static mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
+    uint32_t m = resource_file_is_readable(DATA_PTR(self));
+    return mrb_bool_value(m);
+}
+
+static mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value self) {
+    uint32_t m = resource_file_is_readable_by_owner(DATA_PTR(self));
+    return mrb_bool_value(m);
+}
+
+static mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value self) {
+    uint32_t m = resource_file_is_readable_by_group(DATA_PTR(self));
+    return mrb_bool_value(m);
+}
+
 void resource_file_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "File", mrb->object_class);
     mrb_define_method(mrb, f, "mode", resource_file_mode_, MRB_ARGS_NONE());
@@ -83,4 +98,7 @@ void resource_file_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "contents", resource_file_contents_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "owner", resource_file_owner_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "group", resource_file_group_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "is_readable", resource_file_is_readable_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "is_readable_by_owner", resource_file_is_readable_by_owner_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "is_readable_by_group", resource_file_is_readable_by_group_, MRB_ARGS_NONE());
 }
