@@ -22,4 +22,14 @@ assert("file") do
   assert_true(f.is_readable_by_user("root"))
   assert_true(f.is_writable())
   assert_true(f.is_writable_by_owner())
+  assert_false(f.is_writable_by_group())
 end
+
+
+
+
+
+
+
+
+

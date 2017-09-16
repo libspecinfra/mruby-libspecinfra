@@ -107,6 +107,11 @@ static mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value s
     return mrb_bool_value(m);
 }
 
+static mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value self) {
+    uint32_t m = resource_file_is_writable_by_group(DATA_PTR(self));
+    return mrb_bool_value(m);
+}
+
 void resource_file_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "File", mrb->object_class);
     mrb_define_method(mrb, f, "mode", resource_file_mode_, MRB_ARGS_NONE());
@@ -128,4 +133,5 @@ void resource_file_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "is_readable_by_user", resource_file_is_readable_by_user_, MRB_ARGS_REQ(1));
     mrb_define_method(mrb, f, "is_writable", resource_file_is_writable_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "is_writable_by_owner", resource_file_is_writable_by_owner_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "is_writable_by_group", resource_file_is_writable_by_group_, MRB_ARGS_NONE());
 }
