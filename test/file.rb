@@ -43,14 +43,11 @@ assert("file link") do
   end
 end
 
-assert("file.mode() returns error when it does not exist") do
+assert("Raise exception when file does not exist") do
   f = s.file("no_existent_file")
   assert_raise(RuntimeError) { f.mode() }
   assert_equal(f.error_description(), "entity not found")
-end
 
-assert("file.is_file() raise exception when it does not exist") do
-  f = s.file("no_existent_file")
   assert_raise(RuntimeError) { f.is_file() }
   assert_equal(f.error_description(), "entity not found")
 end
