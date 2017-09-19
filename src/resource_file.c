@@ -17,7 +17,11 @@ static mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
     int32_t m = resource_file_mode(f);
 
     if ( m < 0 ) {
-        mrb_raise(mrb, E_RUNTIME_ERROR, resource_file_error_description(f));
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
     } else {
         return mrb_fixnum_value(m);
     }
@@ -29,13 +33,21 @@ static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
-    int32_t m = resource_file_is_file(DATA_PTR(self));
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    int32_t m = resource_file_is_file(f);
+
     if ( m == 1 ) {
         return mrb_true_value();
     } else if ( m == 0 ) {
         return mrb_false_value();
     } else {
-        mrb_raise(mrb, E_RUNTIME_ERROR, resource_file_error_description(DATA_PTR(self)));
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
     }
 }
 
