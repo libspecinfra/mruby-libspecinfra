@@ -48,3 +48,9 @@ assert("file.mode() returns error when it does not exist") do
   assert_equal(f.mode(), -1)
   assert_equal(f.error_description(), "entity not found")
 end
+
+assert("file.is_file() returns error when it does not exist") do
+  f = s.file("no_existent_file")
+  assert_equal(f.is_file(), nil)
+  assert_equal(f.error_description(), "entity not found")
+end

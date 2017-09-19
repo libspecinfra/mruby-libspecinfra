@@ -21,8 +21,14 @@ static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
-    uint32_t m = resource_file_is_file(DATA_PTR(self));
-    return mrb_bool_value(m);
+    int32_t m = resource_file_is_file(DATA_PTR(self));
+    if ( m == 1 ) {
+        return mrb_true_value();
+    } else if ( m == 0 ) {
+        return mrb_false_value();
+    } else {
+        return mrb_nil_value();
+    }
 }
 
 static mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
