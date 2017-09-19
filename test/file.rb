@@ -45,9 +45,6 @@ end
 
 assert("Raise exception when file does not exist") do
   f = s.file("no_existent_file")
-  assert_raise(RuntimeError) { f.mode() }
-  assert_equal(f.error_description(), "entity not found")
-
-  assert_raise(RuntimeError) { f.is_file() }
-  assert_equal(f.error_description(), "entity not found")
+  assert_raise(RuntimeError, "entity not found") { f.mode() }
+  assert_raise(RuntimeError, "entity not found") { f.is_file() }
 end
