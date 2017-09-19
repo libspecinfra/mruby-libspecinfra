@@ -11,8 +11,16 @@ static mrb_value resource_file_error_description_(mrb_state *mrb, mrb_value self
 }
 
 static mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
-    int32_t m = resource_file_mode(DATA_PTR(self));
-    return mrb_fixnum_value(m);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    int32_t m = resource_file_mode(f);
+
+    if ( m < 0 ) {
+        mrb_raise(mrb, E_RUNTIME_ERROR, resource_file_error_description(f));
+    } else {
+        return mrb_fixnum_value(m);
+    }
 }
 
 static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
