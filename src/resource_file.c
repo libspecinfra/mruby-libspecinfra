@@ -27,7 +27,7 @@ static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
     } else if ( m == 0 ) {
         return mrb_false_value();
     } else {
-        return mrb_nil_value();
+        mrb_raise(mrb, E_RUNTIME_ERROR, resource_file_error_description(DATA_PTR(self)));
     }
 }
 
