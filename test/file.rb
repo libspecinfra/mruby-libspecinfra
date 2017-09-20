@@ -58,9 +58,12 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.contents() }
   assert_raise(RuntimeError, "entity not found") { f.owner() }
   assert_raise(RuntimeError, "entity not found") { f.group() }
+
   assert_raise(RuntimeError, "entity not found") { f.is_readable() }
   assert_raise(RuntimeError, "entity not found") { f.is_readable_by_owner() }
   assert_raise(RuntimeError, "entity not found") { f.is_readable_by_group() }
   assert_raise(RuntimeError, "entity not found") { f.is_readable_by_others() }
   assert_raise(RuntimeError, "entity not found") { f.is_readable_by_user("root") }
+
+  assert_raise(RuntimeError, "entity not found") { f.is_writable() }
 end
