@@ -53,13 +53,5 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.is_block_device() }
   assert_raise(RuntimeError, "entity not found") { f.is_character_device() }
   assert_raise(RuntimeError, "entity not found") { f.is_pipe() }
+  assert_raise(RuntimeError, "entity not found") { f.is_socket() }
 end
-
-
-
-
-
-
-
-
-
