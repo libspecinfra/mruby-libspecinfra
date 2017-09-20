@@ -161,8 +161,22 @@ static mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
-    uint32_t m = resource_file_is_symlink(DATA_PTR(self));
-    return mrb_bool_value(m);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    int32_t m = resource_file_is_symlink(f);
+
+    if ( m == 1 ) {
+        return mrb_true_value();
+    } else if ( m == 0 ) {
+        return mrb_false_value();
+    } else {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    }
 }
 
 static mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {

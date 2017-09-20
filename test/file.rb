@@ -54,4 +54,5 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.is_character_device() }
   assert_raise(RuntimeError, "entity not found") { f.is_pipe() }
   assert_raise(RuntimeError, "entity not found") { f.is_socket() }
+  assert_raise(RuntimeError, "entity not found") { f.is_symlink() }
 end
