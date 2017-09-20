@@ -49,4 +49,5 @@ assert("file does not exist") do
   assert_false(f.exist())
   assert_raise(RuntimeError, "entity not found") { f.mode() }
   assert_raise(RuntimeError, "entity not found") { f.is_file() }
+  assert_raise(RuntimeError, "entity not found") { f.is_directory() }
 end
