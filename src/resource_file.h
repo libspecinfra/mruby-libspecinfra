@@ -63,7 +63,7 @@ static mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value se
 extern int32_t *resource_file_is_writable(resource_file_t *f);
 static mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self);
 
-extern uint32_t *resource_file_is_writable_by_owner(resource_file_t *f);
+extern int32_t *resource_file_is_writable_by_owner(resource_file_t *f);
 static mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value self);
 
 extern uint32_t *resource_file_is_writable_by_group(resource_file_t *f);
