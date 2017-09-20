@@ -1,8 +1,9 @@
 b = Libspecinfra::Backend::Direct.new()
 s = Libspecinfra::Specinfra.new(b)
-f = s.file("/etc/passwd")
 
-assert("file") do
+assert("/etc/asswd") do
+  f = s.file("/etc/passwd")
+
   assert_equal(f.mode(), 0o644)
   assert_true(f.exist())
   assert_true(f.is_file())
@@ -39,12 +40,13 @@ assert("file link") do
   f = s.file("/var/lock")
   if f.exist() && f.is_symlink()
     assert_equal(f.linked_to(), "/run/lock")
-  else
   end
 end
 
-assert("Raise exception when file does not exist") do
+assert("file does not exist") do
   f = s.file("no_existent_file")
+
+  assert_false(f.exist())
   assert_raise(RuntimeError, "entity not found") { f.mode() }
   assert_raise(RuntimeError, "entity not found") { f.is_file() }
 end
