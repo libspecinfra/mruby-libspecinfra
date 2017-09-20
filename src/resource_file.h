@@ -12,7 +12,7 @@ static mrb_value resource_file_error_description_(mrb_state *mrb, mrb_value self
 extern int32_t resource_file_mode(resource_file_t *f);
 static mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self);
 
-extern uint32_t resource_file_exist(resource_file_t *f);
+extern int32_t resource_file_exist(resource_file_t *f);
 static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self);
 
 extern int32_t resource_file_is_file(resource_file_t *f);
