@@ -57,7 +57,7 @@ static mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value s
 extern int32_t *resource_file_is_readable_by_others(resource_file_t *f);
 static mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value self);
 
-extern uint32_t *resource_file_is_readable_by_user(resource_file_t *f, const char *u);
+extern int32_t *resource_file_is_readable_by_user(resource_file_t *f, const char *u);
 static mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value self);
 
 extern uint32_t *resource_file_is_writable(resource_file_t *f);
