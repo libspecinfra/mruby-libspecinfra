@@ -70,4 +70,7 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_group() }
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_others() }
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_user("root") }
+
+  assert_raise(RuntimeError, "entity not found") { f.md5sum() }
+  assert_raise(RuntimeError, "entity not found") { f.sha256sum() }
 end

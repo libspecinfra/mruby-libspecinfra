@@ -433,17 +433,41 @@ static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value se
 }
 
 static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
-    mrb_value str;
-    char *c = resource_file_md5sum(DATA_PTR(self));
-    str = mrb_str_buf_new(mrb, sizeof(c));
-    return mrb_str_cat2(mrb, str, c);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    char *c = resource_file_md5sum(f);
+
+    if (c == NULL) {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    } else {
+        mrb_value str;
+        str = mrb_str_buf_new(mrb, sizeof(c));
+        return mrb_str_cat2(mrb, str, c);
+    }
 }
 
 static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
-    mrb_value str;
-    char *c = resource_file_sha256sum(DATA_PTR(self));
-    str = mrb_str_buf_new(mrb, sizeof(c));
-    return mrb_str_cat2(mrb, str, c);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    char *c = resource_file_sha256sum(f);
+
+    if (c == NULL) {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    } else {
+        mrb_value str;
+        str = mrb_str_buf_new(mrb, sizeof(c));
+        return mrb_str_cat2(mrb, str, c);
+    }
 }
 
 static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
