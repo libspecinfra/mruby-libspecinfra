@@ -1,6 +1,5 @@
 MRUBY_CONFIG=File.expand_path(ENV["MRUBY_CONFIG"] || "build_config.rb")
 MRUBY_VERSION=ENV["MRUBY_VERSION"] || "master"
-LIBSPECINFRA_BRANCH="error-handling-for-ffi"
 
 file :mruby do
   cmd =  "git clone --depth=1 git://github.com/mruby/mruby.git"
