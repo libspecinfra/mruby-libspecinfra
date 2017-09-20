@@ -69,13 +69,5 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_owner() }
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_group() }
   assert_raise(RuntimeError, "entity not found") { f.is_writable_by_others() }
+  assert_raise(RuntimeError, "entity not found") { f.is_writable_by_user("root") }
 end
-
-
-
-
-
-
-
-
-

@@ -413,9 +413,23 @@ static mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value 
 static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self) {
     char *user;
     mrb_int len;
+    struct resource_file_t *f;
+
     mrb_get_args(mrb, "s", &user, &len);
-    uint32_t m = resource_file_is_writable_by_user(DATA_PTR(self), user);
-    return mrb_bool_value(m);
+    f = DATA_PTR(self);
+    int32_t m = resource_file_is_writable_by_user(f, user);
+
+    if ( m == 1 ) {
+        return mrb_true_value();
+    } else if ( m == 0 ) {
+        return mrb_false_value();
+    } else {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    }
 }
 
 static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
