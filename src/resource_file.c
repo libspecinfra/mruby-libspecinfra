@@ -199,10 +199,22 @@ static mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
-    mrb_value str;
-    char *c = resource_file_owner(DATA_PTR(self));
-    str = mrb_str_buf_new(mrb, sizeof(c));
-    return mrb_str_cat2(mrb, str, c);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    char *c = resource_file_owner(f);
+
+    if (c == NULL) {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    } else {
+        mrb_value str;
+        str = mrb_str_buf_new(mrb, sizeof(c));
+        return mrb_str_cat2(mrb, str, c);
+    }
 }
 
 static mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {

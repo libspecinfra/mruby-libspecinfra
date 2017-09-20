@@ -56,4 +56,5 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.is_socket() }
   assert_raise(RuntimeError, "entity not found") { f.is_symlink() }
   assert_raise(RuntimeError, "entity not found") { f.contents() }
+  assert_raise(RuntimeError, "entity not found") { f.owner() }
 end
