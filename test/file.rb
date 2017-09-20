@@ -74,4 +74,5 @@ assert("file does not exist") do
   assert_raise(RuntimeError, "entity not found") { f.md5sum() }
   assert_raise(RuntimeError, "entity not found") { f.sha256sum() }
   assert_raise(RuntimeError, "entity not found") { f.size() }
+  assert_raise(RuntimeError, "entity not found") { f.linked_to() }
 end
