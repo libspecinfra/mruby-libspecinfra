@@ -471,8 +471,20 @@ static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
-    int64_t m = resource_file_size(DATA_PTR(self));
-    return mrb_fixnum_value(m);
+    struct resource_file_t *f;
+    f = DATA_PTR(self);
+
+    int64_t m = resource_file_size(f);
+
+    if ( m < 0 ) {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_file_error_description(f)
+        );
+    } else {
+        return mrb_fixnum_value(m);
+    }
 }
 
 static mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self) {
