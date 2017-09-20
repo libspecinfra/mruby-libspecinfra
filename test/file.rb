@@ -1,8 +1,9 @@
 b = Libspecinfra::Backend::Direct.new()
 s = Libspecinfra::Specinfra.new(b)
-f = s.file("/etc/passwd")
 
-assert("file") do
+assert("/etc/asswd") do
+  f = s.file("/etc/passwd")
+
   assert_equal(f.mode(), 0o644)
   assert_true(f.exist())
   assert_true(f.is_file())
@@ -39,6 +40,39 @@ assert("file link") do
   f = s.file("/var/lock")
   if f.exist() && f.is_symlink()
     assert_equal(f.linked_to(), "/run/lock")
-  else
   end
+end
+
+assert("file does not exist") do
+  f = s.file("no_existent_file")
+
+  assert_false(f.exist())
+  assert_raise(RuntimeError, "entity not found") { f.mode() }
+  assert_raise(RuntimeError, "entity not found") { f.is_file() }
+  assert_raise(RuntimeError, "entity not found") { f.is_directory() }
+  assert_raise(RuntimeError, "entity not found") { f.is_block_device() }
+  assert_raise(RuntimeError, "entity not found") { f.is_character_device() }
+  assert_raise(RuntimeError, "entity not found") { f.is_pipe() }
+  assert_raise(RuntimeError, "entity not found") { f.is_socket() }
+  assert_raise(RuntimeError, "entity not found") { f.is_symlink() }
+  assert_raise(RuntimeError, "entity not found") { f.contents() }
+  assert_raise(RuntimeError, "entity not found") { f.owner() }
+  assert_raise(RuntimeError, "entity not found") { f.group() }
+
+  assert_raise(RuntimeError, "entity not found") { f.is_readable() }
+  assert_raise(RuntimeError, "entity not found") { f.is_readable_by_owner() }
+  assert_raise(RuntimeError, "entity not found") { f.is_readable_by_group() }
+  assert_raise(RuntimeError, "entity not found") { f.is_readable_by_others() }
+  assert_raise(RuntimeError, "entity not found") { f.is_readable_by_user("root") }
+
+  assert_raise(RuntimeError, "entity not found") { f.is_writable() }
+  assert_raise(RuntimeError, "entity not found") { f.is_writable_by_owner() }
+  assert_raise(RuntimeError, "entity not found") { f.is_writable_by_group() }
+  assert_raise(RuntimeError, "entity not found") { f.is_writable_by_others() }
+  assert_raise(RuntimeError, "entity not found") { f.is_writable_by_user("root") }
+
+  assert_raise(RuntimeError, "entity not found") { f.md5sum() }
+  assert_raise(RuntimeError, "entity not found") { f.sha256sum() }
+  assert_raise(RuntimeError, "entity not found") { f.size() }
+  assert_raise(RuntimeError, "entity not found") { f.linked_to() }
 end
