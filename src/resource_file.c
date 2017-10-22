@@ -13,7 +13,7 @@ mrb_value resource_file_error_description_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -31,7 +31,7 @@ mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -51,7 +51,7 @@ mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -71,7 +71,7 @@ mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -91,7 +91,7 @@ mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -111,7 +111,7 @@ mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_character_device_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -131,7 +131,7 @@ mrb_value resource_file_is_character_device_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -151,7 +151,7 @@ mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -171,7 +171,7 @@ mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -191,7 +191,7 @@ mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
@@ -211,7 +211,7 @@ mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
@@ -231,7 +231,7 @@ mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
@@ -251,7 +251,7 @@ mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -271,7 +271,7 @@ mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -291,7 +291,7 @@ mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -311,7 +311,7 @@ mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -333,7 +333,7 @@ mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value self) {
 mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value self) {
     char *user;
     mrb_int len;
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     mrb_get_args(mrb, "s", &user, &len);
@@ -354,7 +354,7 @@ mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -374,7 +374,7 @@ mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -394,7 +394,7 @@ mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -414,7 +414,7 @@ mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     f = DATA_PTR(self);
@@ -436,7 +436,7 @@ mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value self) {
 mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self) {
     char *user;
     mrb_int len;
-    struct resource_file_S *f;
+    resource_file_t *f;
     int32_t m;
 
     mrb_get_args(mrb, "s", &user, &len);
@@ -457,7 +457,7 @@ mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
@@ -477,7 +477,7 @@ mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
@@ -497,7 +497,7 @@ mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     int64_t m;
 
     f = DATA_PTR(self);
@@ -515,7 +515,7 @@ mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
 }
 
 mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_S *f;
+    resource_file_t *f;
     char *c;
 
     f = DATA_PTR(self);
