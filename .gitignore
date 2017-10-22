@@ -1,2 +1,5 @@
 mruby
 specinfra
+.vagrant
+*.log
+
