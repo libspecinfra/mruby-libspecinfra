@@ -3,18 +3,21 @@
 #include "mruby/string.h"
 #include "resource_file.h"
 
-static mrb_value resource_file_error_description_(mrb_state *mrb, mrb_value self) {
+mrb_value resource_file_error_description_(mrb_state *mrb, mrb_value self) {
     mrb_value str;
-    char *c = resource_file_error_description(DATA_PTR(self));
+    char *c;
+
+    c = resource_file_error_description(DATA_PTR(self));
     str = mrb_str_buf_new(mrb, sizeof(c));
     return mrb_str_cat2(mrb, str, c);
 }
 
-static mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_mode(f);
+    f = DATA_PTR(self);
+    m = resource_file_mode(f);
 
     if ( m < 0 ) {
         mrb_raise(
@@ -27,11 +30,12 @@ static mrb_value resource_file_mode_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_exist(f);
+    f = DATA_PTR(self);
+    m = resource_file_exist(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -46,11 +50,12 @@ static mrb_value resource_file_exist_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_file(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_file(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -65,11 +70,12 @@ static mrb_value resource_file_is_file_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_directory(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_directory(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -84,11 +90,12 @@ static mrb_value resource_file_is_directory_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_block_device(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_block_device(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -103,11 +110,12 @@ static mrb_value resource_file_is_block_device_(mrb_state *mrb, mrb_value self) 
     }
 }
 
-static mrb_value resource_file_is_character_device_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_character_device_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_character_device(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_character_device(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -122,11 +130,12 @@ static mrb_value resource_file_is_character_device_(mrb_state *mrb, mrb_value se
     }
 }
 
-static mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_pipe(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_pipe(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -141,11 +150,12 @@ static mrb_value resource_file_is_pipe_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_socket(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_socket(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -160,11 +170,12 @@ static mrb_value resource_file_is_socket_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_symlink(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_symlink(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -179,11 +190,12 @@ static mrb_value resource_file_is_symlink_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_contents(f);
+    f = DATA_PTR(self);
+    c = resource_file_contents(f);
 
     if (c == NULL) {
         mrb_raise(
@@ -198,11 +210,12 @@ static mrb_value resource_file_contents_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_owner(f);
+    f = DATA_PTR(self);
+    c = resource_file_owner(f);
 
     if (c == NULL) {
         mrb_raise(
@@ -217,11 +230,12 @@ static mrb_value resource_file_owner_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_group(f);
+    f = DATA_PTR(self);
+    c = resource_file_group(f);
 
     if (c == NULL) {
         mrb_raise(
@@ -236,11 +250,12 @@ static mrb_value resource_file_group_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_readable(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_readable(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -255,11 +270,12 @@ static mrb_value resource_file_is_readable_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_readable_by_owner(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_readable_by_owner(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -274,11 +290,12 @@ static mrb_value resource_file_is_readable_by_owner_(mrb_state *mrb, mrb_value s
     }
 }
 
-static mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_readable_by_group(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_readable_by_group(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -293,11 +310,12 @@ static mrb_value resource_file_is_readable_by_group_(mrb_state *mrb, mrb_value s
     }
 }
 
-static mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_readable_by_others(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_readable_by_others(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -312,14 +330,15 @@ static mrb_value resource_file_is_readable_by_others_(mrb_state *mrb, mrb_value 
     }
 }
 
-static mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value self) {
+mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value self) {
     char *user;
     mrb_int len;
-    struct resource_file_t *f;
+    struct resource_file_S *f;
+    int32_t m;
 
     mrb_get_args(mrb, "s", &user, &len);
     f = DATA_PTR(self);
-    int32_t m = resource_file_is_readable_by_user(f, user);
+    m = resource_file_is_readable_by_user(f, user);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -334,11 +353,12 @@ static mrb_value resource_file_is_readable_by_user_(mrb_state *mrb, mrb_value se
     }
 }
 
-static mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_writable(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_writable(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -353,11 +373,12 @@ static mrb_value resource_file_is_writable_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_writable_by_owner(f);
+    f = DATA_PTR(self);
+    m  = resource_file_is_writable_by_owner(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -372,11 +393,12 @@ static mrb_value resource_file_is_writable_by_owner_(mrb_state *mrb, mrb_value s
     } 
 }
 
-static mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_writable_by_group(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_writable_by_group(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -391,11 +413,12 @@ static mrb_value resource_file_is_writable_by_group_(mrb_state *mrb, mrb_value s
     }
 }
 
-static mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int32_t m;
 
-    int32_t m = resource_file_is_writable_by_others(f);
+    f = DATA_PTR(self);
+    m = resource_file_is_writable_by_others(f);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -410,14 +433,15 @@ static mrb_value resource_file_is_writable_by_others_(mrb_state *mrb, mrb_value 
     }
 }
 
-static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self) {
+mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value self) {
     char *user;
     mrb_int len;
-    struct resource_file_t *f;
+    struct resource_file_S *f;
+    int32_t m;
 
     mrb_get_args(mrb, "s", &user, &len);
     f = DATA_PTR(self);
-    int32_t m = resource_file_is_writable_by_user(f, user);
+    m = resource_file_is_writable_by_user(f, user);
 
     if ( m == 1 ) {
         return mrb_true_value();
@@ -432,11 +456,12 @@ static mrb_value resource_file_is_writable_by_user_(mrb_state *mrb, mrb_value se
     }
 }
 
-static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_md5sum(f);
+    f = DATA_PTR(self);
+    c = resource_file_md5sum(f);
 
     if (c == NULL) {
         mrb_raise(
@@ -451,11 +476,12 @@ static mrb_value resource_file_md5sum_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_sha256sum(f);
+    f = DATA_PTR(self);
+    c = resource_file_sha256sum(f);
 
     if (c == NULL) {
         mrb_raise(
@@ -470,11 +496,12 @@ static mrb_value resource_file_sha256sum_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    int64_t m;
 
-    int64_t m = resource_file_size(f);
+    f = DATA_PTR(self);
+    m = (int64_t)resource_file_size(f);
 
     if ( m < 0 ) {
         mrb_raise(
@@ -487,11 +514,12 @@ static mrb_value resource_file_size_(mrb_state *mrb, mrb_value self) {
     }
 }
 
-static mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self) {
-    struct resource_file_t *f;
-    f = DATA_PTR(self);
+mrb_value resource_file_linked_to_(mrb_state *mrb, mrb_value self) {
+    struct resource_file_S *f;
+    char *c;
 
-    char *c = resource_file_linked_to(f);
+    f = DATA_PTR(self);
+    c = resource_file_linked_to(f);
 
     if (c == NULL) {
         mrb_raise(

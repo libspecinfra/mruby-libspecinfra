@@ -12,9 +12,11 @@ const static struct mrb_data_type mrb_specinfra_type = { "Specinfra", mrb_free }
 
 static mrb_value specinfra_initialize(mrb_state *mrb, mrb_value self) {
     mrb_value v;
-    mrb_get_args(mrb, "o", &v);
+    specinfra_t *s;
 
-    specinfra_t *s = specinfra_new(DATA_PTR(v));
+    mrb_get_args(mrb, "o", &v);
+    s = specinfra_new(DATA_PTR(v));
+
     DATA_TYPE(self) = &mrb_specinfra_type;
     DATA_PTR(self) = s;
 
@@ -22,9 +24,13 @@ static mrb_value specinfra_initialize(mrb_state *mrb, mrb_value self) {
 }
 
 static mrb_value specinfra_file_(mrb_state *mrb, mrb_value self) {
+    struct RClass *file_class;
     mrb_value v;
+    char *n;
+    resource_file_t *file;
+    mrb_value file_object;
 
-    struct RClass *file_class = mrb_class_get_under(
+    file_class = mrb_class_get_under(
         mrb, 
         mrb_module_get_under(
             mrb,
@@ -33,10 +39,10 @@ static mrb_value specinfra_file_(mrb_state *mrb, mrb_value self) {
         "File");
 
     mrb_get_args(mrb, "S", &v);
-    char *n = mrb_str_to_cstr(mrb, v);
-    resource_file_t *file = specinfra_file(DATA_PTR(self), n);
+    n = mrb_str_to_cstr(mrb, v);
+    file = specinfra_file(DATA_PTR(self), n);
 
-    mrb_value file_object = mrb_obj_new(mrb, file_class, 0, NULL);
+    file_object = mrb_obj_new(mrb, file_class, 0, NULL);
     DATA_TYPE(file_object) = &mrb_resource_file_type;
     DATA_PTR(file_object) = file;
 
