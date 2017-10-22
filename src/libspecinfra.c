@@ -6,7 +6,9 @@
 
 typedef struct specinfra_S specinfra_t;
 extern specinfra_t *specinfra_new(backend_t *b);
+
 extern resource_file_t *specinfra_file(specinfra_t *s, const char *n);
+extern resource_service_t *specinfra_service(specinfra_t *s, const char *n);
 
 const static struct mrb_data_type mrb_specinfra_type = { "Specinfra", mrb_free };
 
@@ -49,6 +51,32 @@ static mrb_value specinfra_file_(mrb_state *mrb, mrb_value self) {
     return file_object;
 }
 
+static mrb_value specinfra_service_(mrb_state *mrb, mrb_value self) {
+    struct RClass *service_class;
+    mrb_value v;
+    char *n;
+    resource_service_t *service;
+    mrb_value service_object;
+
+    service_class = mrb_class_get_under(
+        mrb,
+        mrb_module_get_under(
+            mrb,
+            mrb_module_get(mrb, "Libspecinfra"),
+            "Resource"),
+        "Service");
+
+    mrb_get_args(mrb, "S", &v);
+    n = mrb_str_to_cstr(mrb, v);
+    service = specinfra_service(DATA_PTR(self), n);
+
+    service_object = mrb_obj_new(mrb, service_class, 0, NULL);
+    DATA_TYPE(service_object) = &mrb_resource_service_type;
+    DATA_PTR(service_object) = service;
+
+    return service_object;
+}
+
 
 void mrb_mruby_libspecinfra_gem_init(mrb_state *mrb)
 {
@@ -57,6 +85,7 @@ void mrb_mruby_libspecinfra_gem_init(mrb_state *mrb)
     struct RClass *s = mrb_define_class_under(mrb, l, "Specinfra", mrb->object_class);
     mrb_define_method(mrb, s, "initialize", specinfra_initialize, MRB_ARGS_REQ(1));
     mrb_define_method(mrb, s, "file", specinfra_file_, MRB_ARGS_REQ(1));
+    mrb_define_method(mrb, s, "service", specinfra_service_, MRB_ARGS_REQ(1));
 
     backend_init(mrb, l);
     resource_init(mrb, l);
