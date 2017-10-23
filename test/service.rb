@@ -6,5 +6,6 @@ assert("nginx") do
 
   if ENV['TEST_SERVICE']
     assert_true(nginx.is_running())
+    assert_true(nginx.is_enabled())
   end
 end

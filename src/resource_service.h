@@ -11,3 +11,6 @@ mrb_value resource_service_error_description_(mrb_state *mrb, mrb_value self);
 
 extern int32_t resource_service_is_running(resource_service_t *f);
 mrb_value resource_service_is_running_(mrb_state *mrb, mrb_value self);
+
+extern int32_t resource_service_is_enabled(resource_service_t *f);
+mrb_value resource_service_is_enabled_(mrb_state *mrb, mrb_value self);
