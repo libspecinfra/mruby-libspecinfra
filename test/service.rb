@@ -10,7 +10,9 @@ assert("nginx") do
     assert_true(dbus.is_running())
     assert_true(sshd.is_enabled())
 
-    assert_true(nginx.is_running())
+    assert_true(nginx.enable())
     assert_true(nginx.is_enabled())
+
+    assert_true(nginx.is_running())
   end
 end
