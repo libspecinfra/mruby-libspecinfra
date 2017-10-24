@@ -16,6 +16,7 @@ assert("nginx") do
     assert_true(nginx.enable())
     assert_true(nginx.is_enabled())
 
+    assert_true(nginx.reload())
     assert_true(nginx.is_running())
   end
 end
