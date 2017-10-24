@@ -29,11 +29,3 @@ assert("nginx") do
     assert_false(nginx.is_running())
   end
 end
-
-
-
-
-
-
-
-
