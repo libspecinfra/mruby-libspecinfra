@@ -23,3 +23,6 @@ mrb_value resource_service_disable_(mrb_state *mrb, mrb_value self);
 
 extern int32_t resource_service_reload(resource_service_t *f);
 mrb_value resource_service_reload_(mrb_state *mrb, mrb_value self);
+
+extern int32_t resource_service_restart(resource_service_t *f);
+mrb_value resource_service_restart_(mrb_state *mrb, mrb_value self);

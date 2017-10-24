@@ -112,6 +112,26 @@ mrb_value resource_service_reload_(mrb_state *mrb, mrb_value self) {
     }
 }
 
+mrb_value resource_service_restart_(mrb_state *mrb, mrb_value self) {
+    resource_service_t *f;
+    int32_t m;
+
+    f = DATA_PTR(self);
+    m = resource_service_restart(f);
+
+    if ( m == 1 ) {
+        return mrb_true_value();
+    } else if ( m == 0 ) {
+        return mrb_false_value();
+    } else {
+        mrb_raise(
+            mrb,
+            E_RUNTIME_ERROR,
+            resource_service_error_description(f)
+        );
+    }
+}
+
 void resource_service_init(mrb_state *mrb, struct RClass *r) {
     struct RClass *f = mrb_define_class_under(mrb, r, "Service", mrb->object_class);
     mrb_define_method(mrb, f, "error_description", resource_service_error_description_, MRB_ARGS_NONE());
@@ -120,4 +140,5 @@ void resource_service_init(mrb_state *mrb, struct RClass *r) {
     mrb_define_method(mrb, f, "enable", resource_service_enable_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "disable", resource_service_disable_, MRB_ARGS_NONE());
     mrb_define_method(mrb, f, "reload", resource_service_reload_, MRB_ARGS_NONE());
+    mrb_define_method(mrb, f, "restart", resource_service_restart_, MRB_ARGS_NONE());
 }

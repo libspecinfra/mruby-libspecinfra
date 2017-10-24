@@ -18,5 +18,8 @@ assert("nginx") do
 
     assert_true(nginx.reload())
     assert_true(nginx.is_running())
+
+    assert_true(nginx.restart())
+    assert_true(nginx.is_running())
   end
 end
